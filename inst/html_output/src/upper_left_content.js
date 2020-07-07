@@ -407,13 +407,14 @@ Signature_Table.prototype.render = function()
             content_row
                 .filter(function(d,i) { return i > 0;})
                 .style('background-color', function(d){return colorScale(d.zscore);})
-                .on("click", function(d){tableClickFunction_PC(matrix.sig_labels[d.row], 'signature')})
                 .append('div');
 
+            content_rows
+                .on("click", function(d){tableClickFunction_PC(d[0], 'signature')})
+
         } else {
-            content_row
-                .filter(function(d,i) { return i > 0;})
-                .on("click", function(d){tableClickFunction_clusters(matrix.sig_labels[d.row], 'signature')})
+            content_rows
+                .on("click", function(d){tableClickFunction_clusters(d[0], 'signature')})
 
             content_row
                 .filter(function(d,i) { return i == 1;})
@@ -455,6 +456,11 @@ Signature_Table.prototype.render = function()
             .filter(function(d,i) { return i > 0;})
             .on("mouseenter", rowHoverFunc)
             .on("mouseleave", rowUnHoverFunc)
+
+        content_row
+            .filter(function(d, i) { return i == 0;})
+            .on("mouseenter", function(d, i) { $(this).addClass('highlight')})
+            .on("mouseleave", function(d, i) { $(this).removeClass('highlight')})
 
         // Add text for signature names
         content_row.filter(function(d,i) { return i == 0;})
@@ -796,6 +802,7 @@ Protein_Table.prototype.render = function()
         content_rows.enter().append('tr');
         content_rows.exit().remove();
 
+
         var content_row = content_rows.selectAll("td")
             .data(function(d){return [d[0]].concat(d[1]);})
 
@@ -806,13 +813,14 @@ Protein_Table.prototype.render = function()
             content_row
                 .filter(function(d,i) { return i > 0;})
                 .style('background-color', function(d){return colorScale(d.zscore);})
-                .on("click", function(d){tableClickFunction_PC(matrix.sig_labels[d.row], 'protein')})
                 .append('div');
 
+            content_rows
+                .on("click", function(d){tableClickFunction_PC(d[0], 'protein')})
+
         } else {
-            content_row
-                .filter(function(d,i) { return i > 0;})
-                .on("click", function(d){tableClickFunction_clusters(matrix.sig_labels[d.row], 'protein')})
+            content_rows
+                .on("click", function(d){tableClickFunction_clusters(d[0], 'protein')})
 
             content_row
                 .filter(function(d,i) { return i == 1;})
@@ -853,6 +861,11 @@ Protein_Table.prototype.render = function()
             .filter(function(d,i) { return i > 0;})
             .on("mouseenter", rowHoverFunc)
             .on("mouseleave", rowUnHoverFunc)
+
+        content_row
+            .filter(function(d, i) { return i == 0;})
+            .on("mouseenter", function(d, i) { $(this).addClass('highlight')})
+            .on("mouseleave", function(d, i) { $(this).removeClass('highlight')})
 
         // Add text for signature names
         content_row.filter(function(d,i) { return i == 0;})
@@ -1257,13 +1270,14 @@ Meta_Table.prototype.render = function()
             content_row
                 .filter(function(d,i) { return i > 0;})
                 .style('background-color', function(d){return colorScale(d.zscore);})
-                .on("click", function(d){tableClickFunction_PC(matrix.sig_labels[d.row], 'meta')})
                 .append('div');
 
+            content_rows
+                .on("click", function(d){tableClickFunction_PC(d[0], 'meta')})
+
         } else {
-            content_row
-                .filter(function(d,i) { return i > 0;})
-                .on("click", function(d){tableClickFunction_clusters(matrix.sig_labels[d.row], 'meta')})
+            content_rows
+                .on("click", function(d){tableClickFunction_clusters(d[0], 'meta')})
 
             content_row
                 .filter(function(d,i) { return i == 1;})
@@ -1302,6 +1316,11 @@ Meta_Table.prototype.render = function()
             .filter(function(d,i) { return i > 0;})
             .on("mouseenter", rowHoverFunc)
             .on("mouseleave", rowUnHoverFunc)
+
+        content_row
+            .filter(function(d, i) { return i == 0;})
+            .on("mouseenter", function(d, i) { $(this).addClass('highlight')})
+            .on("mouseleave", function(d, i) { $(this).removeClass('highlight')})
 
         // Add text for signature names
         content_row.filter(function(d,i) { return i == 0;})
